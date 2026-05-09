@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="room_10x10_dense">
+    
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="walls">
+      <static>true</static>
+      <link name="link">
+        <visual name="n"><pose>0 5 1 0 0 0</pose><geometry><box><size>10 0.1 2</size></box></geometry></visual>
+        <collision name="n"><pose>0 5 1 0 0 0</pose><geometry><box><size>10 0.1 2</size></box></geometry></collision>
+        
+        <visual name="s"><pose>0 -5 1 0 0 0</pose><geometry><box><size>10 0.1 2</size></box></geometry></visual>
+        <collision name="s"><pose>0 -5 1 0 0 0</pose><geometry><box><size>10 0.1 2</size></box></geometry></collision>
+        
+        <visual name="e"><pose>5 0 1 0 0 0</pose><geometry><box><size>0.1 10 2</size></box></geometry></visual>
+        <collision name="e"><pose>5 0 1 0 0 0</pose><geometry><box><size>0.1 10 2</size></box></geometry></collision>
+        
+        <visual name="w"><pose>-5 0 1 0 0 0</pose><geometry><box><size>0.1 10 2</size></box></geometry></visual>
+        <collision name="w"><pose>-5 0 1 0 0 0</pose><geometry><box><size>0.1 10 2</size></box></geometry></collision>
+      </link>
+    </model>
+
+    <model name="center_pillar">
+      <static>true</static>
+      <pose>0 0 1 0 0 0</pose> <link name="link">
+        <collision name="col"><geometry><box><size>1.2 1.2 2</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>1.2 1.2 2</size></box></geometry>
+          <material><ambient>0.5 0.5 0.5 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="box_blue">
+      <static>true</static>
+      <pose>-2.5 2.5 0.5 0 0 0</pose> <link name="link">
+        <collision name="col"><geometry><box><size>1 1 1</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>1 1 1</size></box></geometry>
+          <material><ambient>0 0 1 1</ambient><diffuse>0 0 1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="cyl_red">
+      <static>true</static>
+      <pose>2.5 -2.5 0.5 0 0 0</pose> <link name="link">
+        <collision name="col"><geometry><cylinder><radius>0.4</radius><length>1</length></cylinder></geometry></collision>
+        <visual name="vis"><geometry><cylinder><radius>0.4</radius><length>1</length></cylinder></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="box_green">
+      <static>true</static>
+      <pose>3 3 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.8 0.8 1</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.8 0.8 1</size></box></geometry>
+          <material><ambient>0 1 0 1</ambient><diffuse>0 1 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="cyl_yellow">
+      <static>true</static>
+      <pose>-3 -3 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><cylinder><radius>0.3</radius><length>1</length></cylinder></geometry></collision>
+        <visual name="vis"><geometry><cylinder><radius>0.3</radius><length>1</length></cylinder></geometry>
+          <material><ambient>1 1 0 1</ambient><diffuse>1 1 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="small_divider">
+      <static>true</static>
+      <pose>0 3 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>3 0.1 1</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>3 0.1 1</size></box></geometry>
+          <material><ambient>0.2 0.2 0.2 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>

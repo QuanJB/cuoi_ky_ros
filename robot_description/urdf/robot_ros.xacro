@@ -1,0 +1,390 @@
+<?xml version="1.0" ?>
+<robot name="robot_ros" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find robot_ros_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find robot_ros_description)/urdf/robot_ros.gazebo" />
+
+<link name="base_footprint"/>
+<joint name="base_footprint_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="1.570796 0 -1.570796"/>
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+</joint>
+
+<link name="front_caster">
+  <collision>
+    <origin xyz="0 0.015 -0.08" rpy="0 0 0"/>
+    <geometry>
+      <sphere radius="0.015"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+</link>
+<joint name="front_caster_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="front_caster"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
+<link name="back_caster">
+  <collision>
+    <origin xyz="0 0.015 0.08" rpy="0 0 0"/>
+    <geometry>
+      <sphere radius="0.015"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+</link>
+<joint name="back_caster_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="back_caster"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="1.222897793824503e-13 0.006168883797667544 0.00499243549811198" rpy="0 0 0"/>
+    <mass value="0.26912643069609726"/>
+    <inertia ixx="0.000584" iyy="0.001079" izz="0.000531" ixy="0.0" iyz="2.2e-05" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="stanoff__2__1">
+  <inertial>
+    <origin xyz="-0.05 0.019999999999999976 0.059999999999999984" rpy="0 0 0"/>
+    <mass value="0.018822542536012524"/>
+    <inertia ixx="3e-06" iyy="0.0" izz="3e-06" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.005 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/stanoff__2__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.005 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/stanoff__2__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="stanoff__1___1__1">
+  <inertial>
+    <origin xyz="0.049999999999999885 0.01999999999999997 0.05999999999999989" rpy="0 0 0"/>
+    <mass value="0.018822542536012527"/>
+    <inertia ixx="3e-06" iyy="0.0" izz="3e-06" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.005 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/stanoff__1___1__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.005 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/stanoff__1___1__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="stanoff__1__1">
+  <inertial>
+    <origin xyz="0.04999999999999991 0.019999999999999973 -0.0599999999999999" rpy="0 0 0"/>
+    <mass value="0.018822542536012527"/>
+    <inertia ixx="3e-06" iyy="0.0" izz="3e-06" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.005 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/stanoff__1__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.005 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/stanoff__1__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="stanoff_1">
+  <inertial>
+    <origin xyz="-0.050000000000000024 0.01999999999999999 -0.05999999999999999" rpy="0 0 0"/>
+    <mass value="0.018822542536012524"/>
+    <inertia ixx="3e-06" iyy="0.0" izz="3e-06" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.005 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/stanoff_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.005 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/stanoff_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="imu_1">
+  <inertial>
+    <origin xyz="4.0731306703083454e-17 0.002500000000000023 3.885780478654568e-18" rpy="0 0 0"/>
+    <mass value="0.003925000058487058"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.005 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/imu_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.005 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/imu_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="top_plate_1">
+  <inertial>
+    <origin xyz="-0.049999999999746435 0.0063505967675932945 -0.055000000000006266" rpy="0 0 0"/>
+    <mass value="0.20830322680546173"/>
+    <inertia ixx="0.000468" iyy="0.000713" izz="0.000276" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.05 -0.045 -0.055" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/top_plate_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.05 -0.045 -0.055" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/top_plate_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="wheel_1">
+  <inertial>
+    <origin xyz="0.012500000000000053 6.938893903907228e-18 1.017332399410385e-15" rpy="0 0 0"/>
+    <mass value="0.11641073403106551"/>
+    <inertia ixx="9.3e-05" iyy="5.3e-05" izz="5.3e-05" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0825 -0.015 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0825 -0.015 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="wheel_2">
+  <inertial>
+    <origin xyz="-0.012499999999999942 7.37257477290143e-16 9.942651306563859e-16" rpy="0 0 0"/>
+    <mass value="0.11641073403106551"/>
+    <inertia ixx="9.3e-05" iyy="5.3e-05" izz="5.3e-05" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0825 -0.015 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/wheel_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0825 -0.015 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/wheel_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="-1.358175429145496e-17 0.009999999999999926 0.08" rpy="0 0 0"/>
+    <mass value="0.197292018645439"/>
+    <inertia ixx="2.6e-05" iyy="3.9e-05" izz="2.6e-05" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 -0.05 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 -0.05 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="link_arm_1_1">
+  <inertial>
+    <origin xyz="-0.010000000000000123 0.028162063620211078 -0.00037849755266013656" rpy="0 0 0"/>
+    <mass value="0.1"/>
+    <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.015 -0.08 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/link_arm_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.015 -0.08 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/link_arm_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="link_arm_2_1">
+  <inertial>
+    <origin xyz="0.007499999999999892 0.021326500168701412 0.04895600422661237" rpy="0 0 0"/>
+    <mass value="0.1"/>
+    <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.015 -0.134995 0.000739" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/link_arm_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.015 -0.134995 0.000739" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_description/meshes/link_arm_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rigid 1" type="fixed">
+  <origin xyz="0.0 0.005 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="stanoff__2__1"/>
+</joint>
+
+<joint name="Rigid 2" type="fixed">
+  <origin xyz="0.0 0.005 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="stanoff__1___1__1"/>
+</joint>
+
+<joint name="Rigid 3" type="fixed">
+  <origin xyz="0.0 0.005 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="stanoff__1__1"/>
+</joint>
+
+<joint name="Rigid 4" type="fixed">
+  <origin xyz="0.0 0.005 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="stanoff_1"/>
+</joint>
+
+<joint name="Rigid 5" type="fixed">
+  <origin xyz="0.0 0.005 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="imu_1"/>
+</joint>
+
+<joint name="Rigid 6" type="fixed">
+  <origin xyz="0.05 0.04 0.055" rpy="0 0 0"/>
+  <parent link="stanoff__1___1__1"/>
+  <child link="top_plate_1"/>
+</joint>
+
+<joint name="Revolute 7" type="continuous">
+  <origin xyz="0.0825 0.015 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="wheel_1"/>
+  <axis xyz="-1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Revolute 8" type="continuous">
+  <origin xyz="-0.0825 0.015 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="wheel_2"/>
+  <axis xyz="-1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Rigid 9" type="fixed">
+  <origin xyz="-0.05 0.005 -0.055" rpy="0 0 0"/>
+  <parent link="top_plate_1"/>
+  <child link="lidar_1"/>
+</joint>
+
+<joint name="Revolute 10" type="revolute">
+  <origin xyz="-0.065 0.035 -0.055" rpy="0 0 0"/>
+  <parent link="top_plate_1"/>
+  <child link="link_arm_1_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+  <dynamics damping="1.0" friction="0.5"/>
+</joint>
+
+<joint name="Revolute 11" type="revolute">
+  <origin xyz="0.0 0.054995 -0.000739" rpy="0 0 0"/>
+  <parent link="link_arm_1_1"/>
+  <child link="link_arm_2_1"/>
+  <axis xyz="-1.0 -0.0 0.0"/>
+  <limit upper="3.141593" lower="0.0" effort="100" velocity="100"/>
+  <dynamics damping="1.0" friction="0.5"/>
+</joint>
+
+<link name="lidar_frame"/>
+<joint name="lidar_frame_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="-1.570796 1.570796 0"/>
+  <parent link="lidar_1"/>
+  <child link="lidar_frame"/>
+</joint>
+
+<link name="imu_frame"/>
+<joint name="imu_frame_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="-1.570796 1.570796 0"/>
+  <parent link="imu_1"/>
+  <child link="imu_frame"/>
+</joint>
+
+</robot>

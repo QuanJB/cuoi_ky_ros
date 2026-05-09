@@ -1,0 +1,14 @@
+# Loại bỏ cài đặt cá nhân của VS Code
+.vscode/
+
+# Loại bỏ các thư mục build của ROS 2 (Tuyệt đối không up mấy cái này lên)
+build/
+install/
+log/
+
+# Loại bỏ cache của Python
+__pycache__/
+*.pyc
+
+# Loại bỏ các file rác của hệ thống
+.DS_Store

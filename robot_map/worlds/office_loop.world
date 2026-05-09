@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="office_loop_clean_path">
+    
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="outer_walls">
+      <static>true</static>
+      <link name="link">
+        <collision name="n"><pose>0 10 1 0 0 0</pose><geometry><box><size>20 0.1 2</size></box></geometry></collision>
+        <visual name="n"><pose>0 10 1 0 0 0</pose><geometry><box><size>20 0.1 2</size></box></geometry></visual>
+        <collision name="s"><pose>0 -10 1 0 0 0</pose><geometry><box><size>20 0.1 2</size></box></geometry></collision>
+        <visual name="s"><pose>0 -10 1 0 0 0</pose><geometry><box><size>20 0.1 2</size></box></geometry></visual>
+        <collision name="e"><pose>10 0 1 0 0 0</pose><geometry><box><size>0.1 20 2</size></box></geometry></collision>
+        <visual name="e"><pose>10 0 1 0 0 0</pose><geometry><box><size>0.1 20 2</size></box></geometry></visual>
+        <collision name="w"><pose>-10 0 1 0 0 0</pose><geometry><box><size>0.1 20 2</size></box></geometry></collision>
+        <visual name="w"><pose>-10 0 1 0 0 0</pose><geometry><box><size>0.1 20 2</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="inner_walls">
+      <static>true</static>
+      <link name="link">
+        <collision name="in_n"><pose>0 4 1 0 0 0</pose><geometry><box><size>8 0.1 2</size></box></geometry></collision>
+        <visual name="in_n"><pose>0 4 1 0 0 0</pose><geometry><box><size>8 0.1 2</size></box></geometry><material><ambient>0.3 0.3 0.3 1</ambient></material></visual>
+        <collision name="in_s"><pose>0 -4 1 0 0 0</pose><geometry><box><size>8 0.1 2</size></box></geometry></collision>
+        <visual name="in_s"><pose>0 -4 1 0 0 0</pose><geometry><box><size>8 0.1 2</size></box></geometry><material><ambient>0.3 0.3 0.3 1</ambient></material></visual>
+        <collision name="in_e"><pose>4 0 1 0 0 0</pose><geometry><box><size>0.1 8 2</size></box></geometry></collision>
+        <visual name="in_e"><pose>4 0 1 0 0 0</pose><geometry><box><size>0.1 8 2</size></box></geometry><material><ambient>0.3 0.3 0.3 1</ambient></material></visual>
+        <collision name="in_w"><pose>-4 0 1 0 0 0</pose><geometry><box><size>0.1 8 2</size></box></geometry></collision>
+        <visual name="in_w"><pose>-4 0 1 0 0 0</pose><geometry><box><size>0.1 8 2</size></box></geometry><material><ambient>0.3 0.3 0.3 1</ambient></material></visual>
+      </link>
+    </model>
+
+    <model name="staggered_spikes">
+      <static>true</static>
+      <link name="link">
+        <visual name="on1"><pose>-6 9.25 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="on2"><pose>0 9.25 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="on3"><pose>6 9.25 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="in1"><pose>-3 4.75 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="in2"><pose>3 4.75 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        
+        <visual name="os1"><pose>-6 -9.25 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="os2"><pose>0 -9.25 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="os3"><pose>6 -9.25 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="is1"><pose>-3 -4.75 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="is2"><pose>3 -4.75 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+
+        <visual name="oe1"><pose>9.25 6 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="oe2"><pose>9.25 0 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="oe3"><pose>9.25 -6 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="ie1"><pose>4.75 3 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="ie2"><pose>4.75 -3 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+
+        <visual name="ow1"><pose>-9.25 6 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="ow2"><pose>-9.25 0 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="ow3"><pose>-9.25 -6 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="iw1"><pose>-4.75 3 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+        <visual name="iw2"><pose>-4.75 -3 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></visual>
+
+        <collision name="c_on2"><pose>0 9.25 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></collision>
+        <collision name="c_in1"><pose>-3 4.75 0.5 0 0 0</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></collision>
+        <collision name="c_oe2"><pose>9.25 0 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></collision>
+        <collision name="c_ie1"><pose>4.75 3 0.5 0 0 1.57</pose><geometry><box><size>0.1 1.5 1</size></box></geometry></collision>
+      </link>
+    </model>
+
+    <model name="corner_pillars">
+      <static>true</static>
+      <link name="link">
+        <visual name="p1"><pose>-8.5 8.5 0.75 0 0 0</pose><geometry><cylinder><radius>0.3</radius><length>1.5</length></cylinder></geometry><material><ambient>0 0 0.8 1</ambient></material></visual>
+        <visual name="p2"><pose>8.5 8.5 0.75 0 0 0</pose><geometry><cylinder><radius>0.3</radius><length>1.5</length></cylinder></geometry><material><ambient>0 0 0.8 1</ambient></material></visual>
+        <visual name="p3"><pose>8.5 -8.5 0.75 0 0 0</pose><geometry><cylinder><radius>0.3</radius><length>1.5</length></cylinder></geometry><material><ambient>0 0 0.8 1</ambient></material></visual>
+        <visual name="p4"><pose>-8.5 -8.5 0.75 0 0 0</pose><geometry><cylinder><radius>0.3</radius><length>1.5</length></cylinder></geometry><material><ambient>0 0 0.8 1</ambient></material></visual>
+        
+        <collision name="cp1"><pose>-8.5 8.5 0.75 0 0 0</pose><geometry><cylinder><radius>0.3</radius><length>1.5</length></cylinder></geometry></collision>
+        <collision name="cp2"><pose>8.5 8.5 0.75 0 0 0</pose><geometry><cylinder><radius>0.3</radius><length>1.5</length></cylinder></geometry></collision>
+        <collision name="cp3"><pose>8.5 -8.5 0.75 0 0 0</pose><geometry><cylinder><radius>0.3</radius><length>1.5</length></cylinder></geometry></collision>
+        <collision name="cp4"><pose>-8.5 -8.5 0.75 0 0 0</pose><geometry><cylinder><radius>0.3</radius><length>1.5</length></cylinder></geometry></collision>
+      </link>
+    </model>
+
+  </world>
+</sdf>
