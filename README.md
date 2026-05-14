@@ -53,9 +53,11 @@ cd ~/giua_ky_ws/src
 git clone https://github.com/QuanJB/giua_ky_ros.git
 cd ..
 
-# 2. Cài đặt công cụ quản lý thư viện rosdep
+# 2. Cài đặt gói công cụ CartographerSLAM, Nav2 và công cụ quản lý thư viện rosdep
 
 sudo apt update
+sudo apt install ros-humble-cartographer ros-humble-cartographer-ros -y
+sudo apt install ros-humble-navigation2 ros-humble-nav2-bringup ros-humble-nav2-map-server -y
 sudo apt install python3-rosdep
 sudo rosdep init
 rosdep update
