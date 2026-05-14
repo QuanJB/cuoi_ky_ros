@@ -63,9 +63,9 @@ rosdep update
 # 3. Tự động cài đặt toàn bộ dependencies của dự án
 
 rosdep install --from-paths src -y --ignore-src
-```
+
 # 4. Biên dịch hệ thống
-```
+
 colcon build --symlink-install
 source install/setup.bash
 ```
