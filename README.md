@@ -63,16 +63,20 @@ Mở các terminal riêng biệt và nạp môi trường (```source install/set
 ```
 ros2 launch robot_description sim.launch.py
 ```
-- Điều khiển xe Ackermann:
+- Điều khiển base của robot sử dụng bàn phím:
 ```
-ros2 run base_controller teleop_ackermann
+ros2 run robot_controller teleop_base_control.py
 ```
 - Điều khiển tay máy:
 ```
-ros2 run base_controller teleop_arm
+ros2 run robot_controller arm_controller.py
+```
+- Chạy CartographerSLAM_2D:
+```
+ros2 launch robot_map slam.launch.py
 ```
 
-## 6. Ghi chú kỹ thuật
+## 6. Ghi chú kỹ thuật (chưa sửa)
 - Dự án áp dụng phương pháp thiết kế Code-First bằng Xacro, cho phép tham số hóa toàn bộ kích thước robot.
 - Bộ điều khiển lái Ackermann đã được tinh chỉnh PID ($K_p=100, K_d=20$) để loại bỏ hiện tượng rung bánh xe trong Gazebo.
 - Sử dụng lệnh colcon build --symlink-install giúp cập nhật ngay lập tức các thay đổi trong file Xacro hoặc Script Python mà không cần biên dịch lại nhiều lần.
