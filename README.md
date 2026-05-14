@@ -1,33 +1,41 @@
-# Mobile Manipulator - ROS 2 Final Project
+# 🤖 Mobile Manipulator - ROS 2 Final Project
 
 ## 1. Mô tả
-Dự án mô phỏng một hệ thống robot di động kết hợp tay máy (Mobile Manipulator) trên môi trường ROS 2 Humble. Robot sử dụng cơ cấu lái vi sai (Diffirential) cho khung gầm và tích hợp tay máy 2 bậc tự do dạng xoay - xoay (R-R):
-- Hệ truyền động: Cơ cấu lái Ackermann thực tế với 2 bánh trước dẫn hướng và 2 bánh sau truyền động lực.
-- Tay máy (2-DOF R-R)
-- Hệ thống cảm biến:
-  - LiDAR: Quét 360 độ phục vụ bài toán tránh vật cản.
-  - IMU: Gắn trực tiếp lên base, mục đích để chỉ hướng và gia tốc của robot.
+Dự án mô phỏng một hệ thống robot di động kết hợp tay máy (Mobile Manipulator) trên môi trường ROS 2 Humble. Robot được thiết kế tối ưu cho bài toán di chuyển và lập bản đồ trong các không gian trong nhà (Văn phòng, Hành lang).
+- **Hệ truyền động:** Cơ cấu lái Vi sai (Differential Drive) với 2 bánh truyền động và bánh xe phụ (caster) cân bằng.
+- **Tay máy:** 2 bậc tự do dạng xoay - xoay (2-DOF R-R).
+- **Hệ thống cảm biến:**
+  - **LiDAR:** Quét 360 độ phục vụ bài toán SLAM và tránh vật cản.
+  - **IMU:** Gắn trực tiếp lên base, cung cấp dữ liệu định hướng và gia tốc.
 
-## 2. Cấu trúc packagePlaintext.
+## 2. Cấu trúc Package
+Dự án được chia thành 4 package chính để đảm bảo tính module hóa:
+
 ```
-├── 📦 base_controller              # Package chứa các node điều khiển (Python)
-│   ├── 📁 config                   # Chứa cấu hình bộ điều khiển (arm_controller.yaml)
-│   ├── 📄 teleop_ackermann.py      # Node điều khiển xe (Hỗ trợ phanh ABS & tự trả lái)
-│   └── 📄 teleop_arm.py            # Node điều khiển tay máy (Khóa giới hạn phần cứng)
-│
-└── 📦 robot_description            # Package chứa mô hình và mô phỏng (Xacro/URDF)
-    ├── 📄 CMakeLists.txt           # File cấu hình biên dịch CMake
-    ├── 📄 package.xml              # Định nghĩa dependencies và plugins
-    ├── 📁 mesh                     # Chứa các file 3D (.stl) của bánh xe và cánh tay
-    ├── 📁 urdf                     # Kiến trúc URDF Module hóa (Xacro)
-    │   ├── 📄 robot.urdf.xacro     # File tổng hợp (Main)
-    │   ├── 📄 base.xacro           # Module khung gầm Ackermann
-    │   ├── 📄 arm.xacro            # Module tay máy R-R & ros2_control
-    │   └── 📄 sensors.xacro        # Module LiDAR & IMU
-    ├── 📁 launch                   # Các tệp khởi chạy hệ thống
-    │   └── 🚀 sim.launch.py        # Khởi chạy Gazebo + RViz2 + Controller Spawners
-    └── 📁 rviz                     # Cấu hình trực quan hóa
-        └── 📄 config.rviz          # File làm sẵn cấu hình RViz2
+├── 📦 robot_bringup            # Khởi chạy tổng của hệ thống
+    ├── 📁 launch               
+        ├── 🚀 sim.launch.py    # Khởi chạy Gazebo, RViz2 và spawn robot
+        └── 🚀 display.launch.py # Xem trước mô hình URDF trên RViz (Không dùng Gazebo)
+ 
+├── 📦 robot_controller         # Package chứa các node điều khiển (Python)
+    ├── 📁 robot_controller     
+        ├── 📄 arm_controller.py      # Node điều khiển góc xoay tay máy
+        ├── 📄 teleop_base_control.py # Điều khiển base mặc định
+ 
+├── 📦 robot_description        # Package chứa mô hình và mô phỏng 3D
+    ├── 📁 meshes               # Chứa các file 3D (.stl) của khung và bánh xe
+    ├── 📁 rviz                 # Cấu hình giao diện RViz2 (config.rviz)
+    └── 📁 urdf                 
+        ├── 📄 robot_ros.xacro  # File lắp ráp robot tổng hợp
+        ├── 📄 robot_ros.gazebo # Chứa các plugin cảm biến (LiDAR, IMU, Diff Drive)
+        └── 📄 materials.xacro  # Định nghĩa vật liệu hiển thị
+ 
+└── 📦 robot_map                # Quản lý hệ thống SLAM và Môi trường
+    ├── 📁 config               # Chứa cấu hình thuật toán (cartographer_2d.lua)
+    ├── 📁 launch               
+        └── 🚀 slam.launch.py   # Gọi node Cartographer và biến đổi TF
+    ├── 📁 map                  # Thư mục lưu trữ bản đồ đã quét (hallway, office_loop, room10x10)
+    └── 📁 worlds               # Các môi trường Gazebo (hallway.world, office_loop.world...)
 ```
 ## 3. Môi trường
 - Hệ điều hành: Ubuntu 22.04 LTS
@@ -39,21 +47,27 @@ Dự án mô phỏng một hệ thống robot di động kết hợp tay máy (M
 Yêu cầu đã cài đặt sẵn ROS 2 Humble.
 ```
 # 1. Tạo workspace và tải mã nguồn
+
 mkdir -p ~/giua_ky_ws/src
 cd ~/giua_ky_ws/src
 git clone https://github.com/QuanJB/giua_ky_ros.git
 cd ..
 
-# 2. Cài đặt công cụ quản lý thư viện rosdep
+# 2. Cài đặt gói công cụ CartographerSLAM, Nav2 và công cụ quản lý thư viện rosdep
+
 sudo apt update
+sudo apt install ros-humble-cartographer ros-humble-cartographer-ros -y
+sudo apt install ros-humble-navigation2 ros-humble-nav2-bringup ros-humble-nav2-map-server -y
 sudo apt install python3-rosdep
 sudo rosdep init
 rosdep update
 
 # 3. Tự động cài đặt toàn bộ dependencies của dự án
+
 rosdep install --from-paths src -y --ignore-src
 
 # 4. Biên dịch hệ thống
+
 colcon build --symlink-install
 source install/setup.bash
 ```
@@ -63,16 +77,20 @@ Mở các terminal riêng biệt và nạp môi trường (```source install/set
 ```
 ros2 launch robot_description sim.launch.py
 ```
-- Điều khiển xe Ackermann:
+- Điều khiển base của robot sử dụng bàn phím:
 ```
-ros2 run base_controller teleop_ackermann
+ros2 run robot_controller teleop_base_control.py
 ```
 - Điều khiển tay máy:
 ```
-ros2 run base_controller teleop_arm
+ros2 run robot_controller arm_controller.py
+```
+- Chạy CartographerSLAM_2D:
+```
+ros2 launch robot_map slam.launch.py
 ```
 
-## 6. Ghi chú kỹ thuật
+## 6. Ghi chú kỹ thuật (chưa sửa)
 - Dự án áp dụng phương pháp thiết kế Code-First bằng Xacro, cho phép tham số hóa toàn bộ kích thước robot.
 - Bộ điều khiển lái Ackermann đã được tinh chỉnh PID ($K_p=100, K_d=20$) để loại bỏ hiện tượng rung bánh xe trong Gazebo.
 - Sử dụng lệnh colcon build --symlink-install giúp cập nhật ngay lập tức các thay đổi trong file Xacro hoặc Script Python mà không cần biên dịch lại nhiều lần.
