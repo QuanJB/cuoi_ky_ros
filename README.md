@@ -45,23 +45,23 @@ Dự án được chia thành 4 package chính để đảm bảo tính module h
 
 ## 4. Cài đặt
 Yêu cầu đã cài đặt sẵn ROS 2 Humble.
-
-# 1. Tạo workspace và tải mã nguồn
 ```
+# 1. Tạo workspace và tải mã nguồn
+
 mkdir -p ~/giua_ky_ws/src
 cd ~/giua_ky_ws/src
 git clone https://github.com/QuanJB/giua_ky_ros.git
 cd ..
-```
+
 # 2. Cài đặt công cụ quản lý thư viện rosdep
-```
+
 sudo apt update
 sudo apt install python3-rosdep
 sudo rosdep init
 rosdep update
-```
+
 # 3. Tự động cài đặt toàn bộ dependencies của dự án
-```
+
 rosdep install --from-paths src -y --ignore-src
 ```
 # 4. Biên dịch hệ thống
