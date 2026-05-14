@@ -25,6 +25,7 @@ setup(
     entry_points={
         'console_scripts': [
             'arm_controller_node = robot_controller.arm_controller:main',
+            'base_control_node = robot_controller.teleop_base_control:main',
         ],
     },
 )
